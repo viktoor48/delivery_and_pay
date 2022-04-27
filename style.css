@@ -1,0 +1,80 @@
+body,
+html {
+    height: 100%;
+    font-size: 62.5%;
+    font-family: 'Museo Sans Cyrl';
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+.container {
+    max-width: 1252px;
+    margin: 0 auto;
+}
+
+.description__title {
+    margin-bottom: 40px;
+}
+
+.description__title h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 110%;
+    color: #1B1B20;
+}
+
+.tabs__title {
+    margin-bottom: 30px;
+}
+
+.tabs__title h2 {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 110%;
+    color: #1B1B20;
+}
+
+.tabs-nav__row {
+    display: flex;
+}
+
+.tabs-nav__item {
+    display: flex;
+    flex: 0 1 25%;
+    border: 2px solid #F7F7F7;
+    border-radius: 10px;
+    padding: 20px;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.tabs-nav__item:last-child {
+    margin-right: 0;
+}
+
+.tabs-nav__item.active {
+    border: 2px solid #009DE0;
+}
+
+.tabs-nav__radio-label {
+    margin-right: 20px;
+}
+
+.tabs-nav__radio {
+
+}
+
+.tabs-nav__title {
+
+}
+
+.tabs-nav__title span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 110%;
+}
