@@ -22,9 +22,9 @@
                 </div>
                 <div class="tabs-nav">
                     <div class="tabs-nav__row">
-                        <div class="tabs-nav__item active">
+                        <div class="tabs-nav__item">
                             <label class="tabs-nav__radio-label">
-                                <input class="tabs-nav__radio" type="radio" value="" checked name="radio-tab">
+                                <input class="tabs-nav__radio" type="radio" value="1" checked name="radio-tab">
                             </label>
                             <div class="tabs-nav__title">
                                 <span>Пункты выдачи заказов по всей России</span>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="tabs-nav__item">
                             <label class="tabs-nav__radio-label">
-                                <input class="tabs-nav__radio" type="radio" value="" name="radio-tab">
+                                <input class="tabs-nav__radio" type="radio" value="2" name="radio-tab">
                             </label>
                             <div class="tabs-nav__title">
                                 <span>Доставка по всей России до двери</span>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="tabs-nav__item">
                             <label class="tabs-nav__radio-label">
-                                <input class="tabs-nav__radio" type="radio" value="" name="radio-tab">
+                                <input class="tabs-nav__radio" type="radio" value="3" name="radio-tab">
                             </label>
                             <div class="tabs-nav__title">
                                 <span>Доставка по Москве и Московской области до двери</span>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="tabs-nav__item">
                             <label class="tabs-nav__radio-label">
-                                <input class="tabs-nav__radio" type="radio" value="" name="radio-tab">
+                                <input class="tabs-nav__radio" type="radio" value="4" name="radio-tab">
                             </label>
                             <div class="tabs-nav__title">
                                 <span>Cамовывоз</span>
@@ -57,8 +57,46 @@
                     </div>
                 </div>
                 <div class="tabs__content">
-                    <div class="tabs__item active">
-
+                    <div class="tabs__item active" data-type="1">
+                        <div class="conditions">
+                            <div class="conditions__row">
+                                <div class="conditions__link">
+                                    <a href="#">
+                                        <img class="conditions__link-image" src="image/info.svg">
+                                    </a>
+                                </div>
+                                <div class="conditions__text">
+                                    <p><span>Условия для бесплатной доставки:</span>  1) сделан заказ на сумму 10 000 руб. с НДС;  2) в городе получателя присутствует ПВЗ Деловые Линии</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <div class="main-content__row">
+                                <div class="main-content__aside">
+                                    <div class="aside-item">
+                                        <div class="aside-item__title">ПВЗ «Деловые Линии»</div>
+                                        <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>
+                                        <div class="aside-item__number">8 (800) 250 44 34</div>
+                                        <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>
+                                    </div>
+                                    <div class="aside-item">
+                                        <div class="aside-item__title">ПВЗ «Деловые Линии»</div>
+                                        <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>
+                                        <div class="aside-item__number">8 (800) 250 44 34</div>
+                                        <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>
+                                    </div>
+                                    <div class="aside-item">
+                                        <div class="aside-item__title">ПВЗ «Деловые Линии»</div>
+                                        <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>
+                                        <div class="aside-item__number">8 (800) 250 44 34</div>
+                                        <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>
+                                    </div>
+                                </div>
+                                <div class="main-content__map">
+                                    <div id="map" class="map"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,5 +104,6 @@
     </div>
 
     <script src="index.js"></script>
+    <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=be01bb72-15a3-4c22-bdcd-121016d2c0d9"></script>
 </body>
 </html>

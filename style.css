@@ -51,6 +51,7 @@ html {
     padding: 20px;
     align-items: center;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .tabs-nav__item:last-child {
@@ -62,19 +63,147 @@ html {
 }
 
 .tabs-nav__radio-label {
+    position: relative;
+    margin-bottom: 20px;
     margin-right: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.tabs-nav__radio-label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #ffffff;
+    border: 1px solid #E3E2E2;
+    border-radius: 100px;
+}
+
+.tabs-nav__radio-label.active::before {
+    border: 2px solid #009DE0;
+}
+
+.tabs-nav__radio-label.active::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #009DE0;
+    border-radius: 10px;
+    top: 6px;
+    left: 6px;
 }
 
 .tabs-nav__radio {
-
-}
-
-.tabs-nav__title {
-
+    display: none;
 }
 
 .tabs-nav__title span {
     font-weight: 600;
     font-size: 16px;
     line-height: 110%;
+}
+
+.conditions {
+    margin: 20px 0 20px 0;
+}
+
+.conditions__row {
+    display: flex;
+    background: rgba(48, 49, 132, 0.1);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.conditions__link {
+    padding: 12px;
+}
+
+.conditions__text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 110%;
+    color: #1B1B20;
+}
+
+.conditions__text span {
+    font-weight: 700;
+}
+
+.main-content {
+
+}
+
+.main-content__row {
+    display: flex;
+}
+
+.main-content__aside {
+    /*flex: 0 0 24%;*/
+    flex: 0 0 25.56%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.aside-item {
+    padding: 20px;
+    border: 2px solid #F7F7F7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.aside-item:last-child {
+    margin-bottom: 0;
+}
+
+.aside-item__title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+}
+
+.aside-item__subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #73737B;
+}
+
+.aside-item__number {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #73737B;
+}
+
+.aside-item__working-hours {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #73737B;
+}
+
+.main-content__map {
+    flex: 1 1 auto;
+    border-radius: 10px;
+}
+
+.map {
+    width: 100%;
+    min-height: 400px;
+    height: 100%;
+}
+
+.map > ymaps {
+    border-radius: 10px;
+    overflow: hidden;
 }
