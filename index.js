@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(e => console.log(e.message));
 
     function init() {
-        let myMap = new ymaps.Map("map", {
+        let myMap = new ymaps.Map('map', {
 
             // Координаты центра карты.
             // Порядок по умолчанию: «широта, долгота».
@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Уровень масштабирования. Допустимые значения:
             // от 0 (весь мир) до 19.
             zoom: 12,
+            controls: ['zoomControl'],
+        }, {
+            autoFitToViewport: 'always'
         });
+
+
+        myMap.controls.get('trafficControl').options.set('size', 'auto');
     }
 });

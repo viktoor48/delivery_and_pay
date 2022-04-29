@@ -107,6 +107,14 @@ html {
     line-height: 110%;
 }
 
+.tabs__item {
+    display: none;
+}
+
+.tabs__item.active {
+    display: block;
+}
+
 .conditions {
     margin: 20px 0 20px 0;
 }
@@ -116,6 +124,7 @@ html {
     background: rgba(48, 49, 132, 0.1);
     border-radius: 10px;
     align-items: center;
+    padding: 0 12px 0 0;
 }
 
 .conditions__link {
@@ -134,7 +143,7 @@ html {
 }
 
 .main-content {
-
+    margin-bottom: 60px;
 }
 
 .main-content__row {
@@ -169,6 +178,7 @@ html {
     font-size: 16px;
     line-height: 110%;
     color: #1B1B20;
+    margin-bottom: 10px;
 }
 
 .aside-item__subtitle {
@@ -176,6 +186,7 @@ html {
     font-size: 14px;
     line-height: 120%;
     color: #73737B;
+    margin-bottom: 10px;
 }
 
 .aside-item__number {
@@ -183,6 +194,7 @@ html {
     font-size: 14px;
     line-height: 120%;
     color: #73737B;
+    margin-bottom: 10px;
 }
 
 .aside-item__working-hours {
@@ -195,6 +207,7 @@ html {
 .main-content__map {
     flex: 1 1 auto;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .map {
@@ -207,3 +220,137 @@ html {
     border-radius: 10px;
     overflow: hidden;
 }
+
+/*scroll*/
+
+.aside-scroll {
+    width: 100%;
+    height: 100%;
+}
+
+.simplebar-scrollbar:before {
+    background: #E3E2E2;
+}
+
+.simplebar-scrollbar {
+    left: 3px;
+    width: 7px;
+}
+
+/*scroll*/
+
+/*pay-methods*/
+
+.pay-methods {
+
+}
+
+.pay-methods__title {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 110%;
+    color: #1B1B20;
+    margin-bottom: 30px;
+}
+
+.pay-methods__row {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.pay-methods__item {
+    border: 2px solid #F7F7F7;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 11 33.33%;
+    margin-right: 20px;
+}
+
+.pay-methods__item:last-child {
+    margin-right: 0;
+}
+
+.pay-methods__image-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.pay-methods__image {
+    margin-right: 20px;
+}
+
+.pay-methods__image:last-child {
+    margin-right: 0;
+}
+
+.pay-methods__text {
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+}
+
+/*pay-methods*/
+
+/*tab2*/
+
+.delivery-address__title {
+    font-size: 16px;
+    line-height: 110%;
+    color: #73737B;
+    margin-bottom: 8px;
+}
+
+.delivery-address__input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.delivery-address__input-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 15px;
+    bottom: 0;
+    margin: auto 0;
+    width: 24px;
+    height: 24px;
+    background: url("image/close.svg") no-repeat;
+    cursor: pointer;
+}
+
+.delivery-address__input {
+    position: relative;
+    width: 100%;
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+    padding: 16px;
+    border: 2px solid #E3E2E2;
+    border-radius: 10px;
+}
+
+.info-order {
+    margin-bottom: 60px;
+}
+
+.info-order__row {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.info-order__date-delivery {
+    font-size: 14px;
+    line-height: 110%;
+    color: #1B1B20;
+    margin-right: 20px;
+    padding: 12px;
+}
+
+.info-order__date-delivery span {
+    font-weight: 600;
+}
+
+/*tab2*/
