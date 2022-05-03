@@ -9,14 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //radio
-    const tabsItem = document.querySelectorAll('.tabs-nav__item');
+    const tabsNavItem = document.querySelectorAll('.tabs-nav__item');
+    const tabsItem = document.querySelectorAll('.tabs__item');
 
-    tabsItem.forEach(item => {
+    tabsNavItem.forEach(item => {
         let labelRadio = item.querySelector('.tabs-nav__radio-label');
         let inputRadio = labelRadio.querySelector('input');
        if (inputRadio.checked) {
            item.classList.add('active');
            labelRadio.classList.add('active');
+           tabsItem.forEach(tabItem => {
+               if (inputRadio.value == tabItem.getAttribute('data-type')) {
+                   tabItem.classList.add('active');
+               }
+           });
        }
 
        item.addEventListener('click', clickOnRadio);
@@ -24,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function clickOnRadio(event) {
-        tabsItem.forEach(item => {
+        tabsNavItem.forEach(item => {
             let labelRadio = item.querySelector('.tabs-nav__radio-label');
             let inputRadio = labelRadio.querySelector('input');
             labelRadio.classList.remove('active');
@@ -34,8 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
         event.currentTarget.classList.add('active');
         event.currentTarget.querySelector('.tabs-nav__radio-label').classList.add('active');
         event.currentTarget.querySelector('.tabs-nav__radio-label').querySelector('input').checked = true;
+        renderTabItem(event.currentTarget.querySelector('.tabs-nav__radio-label').querySelector('input'));
     }
 
+    function renderTabItem(inputRadio) {
+        tabsItem.forEach(tabItem => {
+            if (tabItem.getAttribute('data-type') == inputRadio.value) {
+                tabItem.classList.add('active');
+            } else {
+                tabItem.classList.remove('active');
+            }
+        });
+    }
 
 
     //map

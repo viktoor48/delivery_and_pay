@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Delivery</title>
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -150,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tabs__item active" data-type="2">
+                    <div class="tabs__item" data-type="2">
                         <div class="conditions">
                             <div class="conditions__row">
                                 <div class="conditions__link">
@@ -168,7 +169,7 @@
                                 Адрес доставки *
                             </div>
                             <div class="delivery-address__input-wrapper">
-                                <input type="text" class="delivery-address__input" placeholder="г. Александровск-Сахалинский, Воротниковский пер, д 12">
+                                <input type="text" class="delivery-address__input" id="address" placeholder="г. Александровск-Сахалинский, Воротниковский пер, д 12">
                             </div>
                             <div class="info-order">
                                 <div class="info-order__row">
@@ -246,5 +247,17 @@
     <script src="index.js"></script>
     <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=be01bb72-15a3-4c22-bdcd-121016d2c0d9"></script>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+    <script>
+        $("#address").suggestions({
+            token: "da440bd7a5f4141ee733e68d26b17537dbeb6117",
+            type: "ADDRESS",
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function(suggestion) {
+                console.log(suggestion);
+            }
+        });
+    </script>
 </body>
 </html>
