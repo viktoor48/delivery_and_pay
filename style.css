@@ -376,3 +376,11 @@ html {
     font-size: 20px;
 }
 /*tab2*/
+
+.description-zones {
+    background: #ffffff;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 120%;
+    color: #1B1B20;
+}

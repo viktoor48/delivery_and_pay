@@ -68,15 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let placemarks1 = [
         {
-            latitude:52.61131029077353,
-            longitude:39.57432284026451,
+            latitude: 52.61131029077353,
+            longitude: 39.57432284026451,
             hintContent: 'Хинт',
             balloonContent: '<div class="aside-item">\n' +
-                '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
-                '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
-                '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
-                '                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>\n' +
-                '                                        </div>'
+        '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
+        '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
+        '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
+        '                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>\n' +
+        '                                        </div>'
         },
         {
             latitude:52.606212324288975,
@@ -135,12 +135,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    renderAsideItem(placemarks1);
+    let placemarks3 = [
+        {
+            latitude:52.59687727960435,
+            longitude:39.5353505582838,
+            hintContent: 'Липецк, ул. Стаханова, 2',
+            balloonContent: '<div class="aside-item">\n' +
+                '                                            <div class="aside-item__title">Пункт выдачи заказов</div>\n' +
+                '                                            <div class="aside-item__subtitle">Липецк, ул. Стаханова, 2</div>\n' +
+                '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
+                '                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>\n' +
+                '                                        </div>'
+        },
+        {
+            latitude:52.60846023200315,
+            longitude:39.54836331760383,
+            hintContent: 'Липецк, ул. Космонавтов, 37',
+            balloonContent: '<div class="aside-item">\n' +
+                '                                            <div class="aside-item__title">Пункт выдачи заказов</div>\n' +
+                '                                            <div class="aside-item__subtitle">Липецк, ул. Космонавтов, 37</div>\n' +
+                '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
+                '                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>\n' +
+                '                                        </div>'
+        },
+        {
+            latitude:52.57711252058072,
+            longitude:39.51235246839194,
+            hintContent: 'Липецк, Ул. Стаханова, 65',
+            balloonContent: '<div class="aside-item">\n' +
+                '                                            <div class="aside-item__title">Пункт выдачи заказов</div>\n' +
+                '                                            <div class="aside-item__subtitle">Липецк, Ул. Стаханова, 65</div>\n' +
+                '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
+                '                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>\n' +
+                '                                        </div>'
+        }
+    ];
+
+
+    renderAsideItem(placemarks1, 'type_1');
+    renderAsideItem(placemarks3, 'type_4');
 
     let geoObjects1 = [];
+    let geoObjects2 = [];
+    let geoObjects3 = [];
 
     function init() {
-        let center = [52.608826, 39.599229];
+        let center = [39.599229, 52.608826];
 
         //map1
         let myMap1 = new ymaps.Map('map1', {
@@ -160,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         for (let i = 0; i < placemarks1.length; i++) {
-            geoObjects1[i] = new ymaps.Placemark([placemarks1[i].latitude, placemarks1[i].longitude], {
+            geoObjects1[i] = new ymaps.Placemark([placemarks1[i].longitude, placemarks1[i].latitude], {
                 hintContent: placemarks1[i].hintContent,
                 balloonContent: placemarks1[i].balloonContent
             },
@@ -183,9 +223,105 @@ document.addEventListener('DOMContentLoaded', () => {
         let myMap2 = new ymaps.Map('map2', {
            center: center,
            zoom: 12,
-           controls: ['zoomControl'],
+           controls: ['geolocationControl', 'searchControl', 'zoomControl'],
         }, {
             autoFitToViewport: 'always'
+        });
+
+        function onZonesLoad(json) {
+            // Добавляем зоны на карту.
+            var deliveryZones = ymaps.geoQuery(json).addToMap(myMap2);
+            // Задаём цвет и контент балунов полигонов.
+            deliveryZones.each(function (obj) {
+                obj.options.set({
+                    fillColor: obj.properties.get('fill'),
+                    fillOpacity: obj.properties.get('fill-opacity'),
+                    strokeColor: obj.properties.get('stroke'),
+                    strokeWidth: obj.properties.get('stroke-width'),
+                    strokeOpacity: obj.properties.get('stroke-opacity')
+                });
+                obj.properties.set('balloonContent', obj.properties.get('description'));
+                obj.myid = 1;
+                obj.events.add('click', (event) => {
+                    console.log(event._cache.target.properties._data);
+                    console.log(event._cache.target);
+                });
+            });
+
+            // Проверим попадание метки геолокации в одну из зон доставки.
+            myMap2.controls.get('geolocationControl').events.add('locationchange', function (e) {
+                highlightResult(e.get('geoObjects').get(0));
+            });
+
+            function highlightResult(obj) {
+                // Сохраняем координаты переданного объекта.
+                let coords = obj.geometry.getCoordinates(),
+                    // Находим полигон, в который входят переданные координаты.
+                    polygon = deliveryZones.searchContaining(coords).get(0);
+
+                if (polygon) {
+                    // Уменьшаем прозрачность всех полигонов, кроме того, в который входят переданные координаты.
+                    deliveryZones.setOptions('fillOpacity', 0.4);
+                    polygon.options.set('fillOpacity', 0.8);
+                    // Перемещаем метку с подписью в переданные координаты и перекрашиваем её в цвет полигона.
+                    deliveryPoint.geometry.setCoordinates(coords);
+                    deliveryPoint.options.set('iconColor', polygon.properties.get('fill'));
+                    // Задаем подпись для метки.
+                    if (typeof(obj.getThoroughfare) === 'function') {
+                        setData(obj);
+                    } else {
+                        // Если вы не хотите, чтобы при каждом перемещении метки отправлялся запрос к геокодеру,
+                        // закомментируйте код ниже.
+                        ymaps.geocode(coords, {results: 1}).then(function (res) {
+                            var obj = res.geoObjects.get(0);
+                            setData(obj);
+                        });
+                    }
+                } else {
+                    // Если переданные координаты не попадают в полигон, то задаём стандартную прозрачность полигонов.
+                    deliveryZones.setOptions('fillOpacity', 0.4);
+                    // Перемещаем метку по переданным координатам.
+                    deliveryPoint.geometry.setCoordinates(coords);
+                    // Задаём контент балуна и метки.
+                    deliveryPoint.properties.set({
+                        iconCaption: 'Доставка транспортной компанией',
+                        balloonContent: 'Cвяжитесь с оператором',
+                        balloonContentHeader: ''
+                    });
+                    // Перекрашиваем метку в чёрный цвет.
+                    deliveryPoint.options.set('iconColor', 'black');
+                }
+
+                function setData(obj){
+                    var address = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
+                    if (address.trim() === '') {
+                        address = obj.getAddressLine();
+                    }
+                    var price = polygon.properties.get('description');
+                    price = price.match(/<strong>(.+)<\/strong>/)[1];
+                    deliveryPoint.properties.set({
+                        iconCaption: address,
+                        balloonContent: address,
+                        balloonContentHeader: price
+                    });
+                }
+            }
+        }
+
+
+        let data = fetch('data.geojson', {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        });
+
+        data.then(data => {
+            console.log(data);
+            onZonesLoad(data);
         });
 
         //map3
@@ -196,13 +332,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }, {
             autoFitToViewport: 'always'
         });
+
+        for (let i = 0; i < placemarks3.length; i++) {
+            geoObjects3[i] = new ymaps.Placemark([placemarks3[i].longitude, placemarks3[i].latitude], {
+               hintContent: placemarks3[i].hintContent,
+               balloonContent: placemarks3[i].balloonContent
+            }, {
+                iconLayout: 'default#image',
+                iconImageHref: 'image/bluepoint.svg',
+                iconImageSize: [30,40],
+                iconImageOffset: [-15, -40]
+            });
+        }
+
+        let clusterer3 = new ymaps.Clusterer({
+
+        });
+
+        myMap3.geoObjects.add(clusterer3);
+        clusterer3.add(geoObjects3);
     }
 
-    function renderAsideItem(placemarks) {
-        const asideScroll = document.querySelector('.aside-scroll');
+    function renderAsideItem(placemarks, id) {
+        const parent = document.getElementById(id);
 
         for (let i = 0; i < placemarks.length; i++) {
-            asideScroll.innerHTML += placemarks[i].balloonContent;
+            parent.innerHTML += placemarks[i].balloonContent;
         }
     }
 });

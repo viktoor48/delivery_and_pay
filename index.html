@@ -75,7 +75,7 @@
                         <div class="main-content">
                             <div class="main-content__row">
                                 <div class="main-content__aside">
-                                    <div data-simplebar data-simplebar-auto-hide="false" data-simplebar-scrollbar-max-size="60" class="aside-scroll">
+                                    <div data-simplebar data-simplebar-auto-hide="false" data-simplebar-scrollbar-max-size="60" class="aside-scroll" id="type_1">
 <!--                                        <div class="aside-item">-->
 <!--                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>-->
 <!--                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>-->
@@ -344,25 +344,25 @@
                         <div class="main-content">
                             <div class="main-content__row">
                                 <div class="main-content__aside">
-                                    <div data-simplebar data-simplebar-auto-hide="false" data-simplebar-scrollbar-max-size="60" class="aside-scroll">
-                                        <div class="aside-item">
-                                            <div class="aside-item__title">Пункт выдачи заказов</div>
-                                            <div class="aside-item__subtitle">142103, Московская область, г. Подольск, ул. Железнодорожная, 2а.</div>
-                                            <div class="aside-item__number">8 (800) 250 44 34</div>
-                                            <div class="aside-item__working-hours">10:00 - 19:00, ежедневно (включая выходные дни)</div>
-                                        </div>
-                                        <div class="aside-item">
-                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>
-                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>
-                                            <div class="aside-item__number">8 (800) 250 44 34</div>
-                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>
-                                        </div>
-                                        <div class="aside-item">
-                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>
-                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>
-                                            <div class="aside-item__number">8 (800) 250 44 34</div>
-                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>
-                                        </div>
+                                    <div data-simplebar data-simplebar-auto-hide="false" data-simplebar-scrollbar-max-size="60" class="aside-scroll" id="type_4">
+<!--                                        <div class="aside-item">-->
+<!--                                            <div class="aside-item__title">Пункт выдачи заказов</div>-->
+<!--                                            <div class="aside-item__subtitle">142103, Московская область, г. Подольск, ул. Железнодорожная, 2а.</div>-->
+<!--                                            <div class="aside-item__number">8 (800) 250 44 34</div>-->
+<!--                                            <div class="aside-item__working-hours">10:00 - 19:00, ежедневно (включая выходные дни)</div>-->
+<!--                                        </div>-->
+<!--                                        <div class="aside-item">-->
+<!--                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>-->
+<!--                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>-->
+<!--                                            <div class="aside-item__number">8 (800) 250 44 34</div>-->
+<!--                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>-->
+<!--                                        </div>-->
+<!--                                        <div class="aside-item">-->
+<!--                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>-->
+<!--                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>-->
+<!--                                            <div class="aside-item__number">8 (800) 250 44 34</div>-->
+<!--                                            <div class="aside-item__working-hours">12:00 - 19:00, Пн - Пт; 12:00 - 17:00, Сб - Вс</div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                                 <div class="main-content__map">
@@ -426,19 +426,10 @@
     </div>
 
     <script src="index.js"></script>
-    <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=be01bb72-15a3-4c22-bdcd-121016d2c0d9"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=be01bb72-15a3-4c22-bdcd-121016d2c0d9"></script>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
-    <script>
-        $("#address").suggestions({
-            token: "da440bd7a5f4141ee733e68d26b17537dbeb6117",
-            type: "ADDRESS",
-            /* Вызывается, когда пользователь выбирает одну из подсказок */
-            onSelect: function(suggestion) {
-                console.log(suggestion);
-            }
-        });
-    </script>
+    <script src="dadata.js"></script>
 </body>
 </html>
