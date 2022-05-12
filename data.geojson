@@ -101,7 +101,7 @@
          },
          "properties":{
             "description":"<div style=\"background: #FFFFFF; padding: 8px 10px; font-weight:700; border-radius: 8px; font-size:14px; color:#1B1B20;\">600 р</div>",
-            "fill":"#56db40",
+            "fill":"#8CD11C",
             "fill-opacity":0.3,
             "stroke":"#56db40",
             "stroke-width":"5",

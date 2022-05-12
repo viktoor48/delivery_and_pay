@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tabsNav = document.querySelectorAll('[data-type="1"]');
 
-    // tabsNav.forEach(item => {
-    //     if (item.classList.contains('active')) {
-    //         console.log(item);
-    //     }
-    // })
-
-
     //radio
     const tabsNavItem = document.querySelectorAll('.tabs-nav__item');
     const tabsItem = document.querySelectorAll('.tabs__item');
@@ -175,8 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderAsideItem(placemarks1, 'type_1');
     renderAsideItem(placemarks3, 'type_4');
 
+    const itemDeliveryList = document.querySelectorAll('.aside-item-delivery');
+
     let geoObjects1 = [];
-    let geoObjects2 = [];
     let geoObjects3 = [];
 
     function init() {
@@ -223,15 +217,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let myMap2 = new ymaps.Map('map2', {
            center: center,
            zoom: 12,
-           controls: ['geolocationControl', 'searchControl', 'zoomControl'],
+           controls: ['geolocationControl', 'zoomControl'],
         }, {
             autoFitToViewport: 'always'
         });
 
         function onZonesLoad(json) {
             // Добавляем зоны на карту.
-            var deliveryZones = ymaps.geoQuery(json).addToMap(myMap2);
+            let deliveryZones = ymaps.geoQuery(json).addToMap(myMap2);
             // Задаём цвет и контент балунов полигонов.
+            let key = 1;
             deliveryZones.each(function (obj) {
                 obj.options.set({
                     fillColor: obj.properties.get('fill'),
@@ -241,11 +236,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     strokeOpacity: obj.properties.get('stroke-opacity')
                 });
                 obj.properties.set('balloonContent', obj.properties.get('description'));
-                obj.myid = 1;
+                obj.myid = key;
+                ++key;
                 obj.events.add('click', (event) => {
-                    console.log(event._cache.target.properties._data);
-                    console.log(event._cache.target);
+                    //console.log(event._cache.target.properties._data);
+                    //console.log(event._cache.target);
+                    console.log(event._cache.target.myid);
+                    let currentZone = event._cache.target;
+                    let currentColor = currentZone.options._options.fillColor;
+                    deliveryZones.each(obj => {
+                        console.log(obj);
+                        if (currentZone.myid === obj.myid) {
+                            obj.options.set('fillOpacity', 0.6);
+                        } else {
+                            obj.options.set('fillOpacity', 0.2);
+                        }
+                    });
+                    itemDeliveryList.forEach(item => {
+                        if (item.getAttribute('data-id') == currentZone.myid) {
+                            item.style.border = `2px solid ${currentColor}`;
+                        } else {
+                            item.style.border = '2px solid #F7F7F7';
+                        }
+                    });
                 });
+            });
+
+
+            myMap2.events.add('click', event => {
+               let coords = event.get('coords');
+               console.log(coords);
+               highlightResult(coords);
             });
 
             // Проверим попадание метки геолокации в одну из зон доставки.
@@ -255,7 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function highlightResult(obj) {
                 // Сохраняем координаты переданного объекта.
-                let coords = obj.geometry.getCoordinates(),
+               //let coords = obj.geometry.getCoordinates(),
+                let coords = obj;
                     // Находим полигон, в который входят переданные координаты.
                     polygon = deliveryZones.searchContaining(coords).get(0);
 
@@ -264,32 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     deliveryZones.setOptions('fillOpacity', 0.4);
                     polygon.options.set('fillOpacity', 0.8);
                     // Перемещаем метку с подписью в переданные координаты и перекрашиваем её в цвет полигона.
-                    deliveryPoint.geometry.setCoordinates(coords);
-                    deliveryPoint.options.set('iconColor', polygon.properties.get('fill'));
-                    // Задаем подпись для метки.
-                    if (typeof(obj.getThoroughfare) === 'function') {
-                        setData(obj);
-                    } else {
-                        // Если вы не хотите, чтобы при каждом перемещении метки отправлялся запрос к геокодеру,
-                        // закомментируйте код ниже.
-                        ymaps.geocode(coords, {results: 1}).then(function (res) {
-                            var obj = res.geoObjects.get(0);
-                            setData(obj);
-                        });
-                    }
                 } else {
                     // Если переданные координаты не попадают в полигон, то задаём стандартную прозрачность полигонов.
                     deliveryZones.setOptions('fillOpacity', 0.4);
-                    // Перемещаем метку по переданным координатам.
-                    deliveryPoint.geometry.setCoordinates(coords);
-                    // Задаём контент балуна и метки.
-                    deliveryPoint.properties.set({
-                        iconCaption: 'Доставка транспортной компанией',
-                        balloonContent: 'Cвяжитесь с оператором',
-                        balloonContentHeader: ''
-                    });
-                    // Перекрашиваем метку в чёрный цвет.
-                    deliveryPoint.options.set('iconColor', 'black');
                 }
 
                 function setData(obj){
