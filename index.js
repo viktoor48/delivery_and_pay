@@ -187,16 +187,65 @@ document.addEventListener('DOMContentLoaded', () => {
             // Уровень масштабирования. Допустимые значения:
             // от 0 (весь мир) до 19.
             zoom: 12,
-            controls: ['zoomControl'],
+            controls: [],
         }, {
             autoFitToViewport: 'always',
             searchControlProvider: 'yandex#search'
-        });
+        }),
+
+            ZoomLayout = ymaps.templateLayoutFactory.createClass(`<div class="zoom-control">
+        <div class="zoom-control__row">
+            <div class="zoom-control__plus" id="zoom-in">
+                <img src="image/plus_icon.svg">
+            </div>
+            <div class="zoom-control__minus" id="zoom-out">
+                <img src="image/minus_icon.svg">
+            </div>
+        </div>
+    </div>`, {
+
+                // Переопределяем методы макета, чтобы выполнять дополнительные действия
+                // при построении и очистке макета.
+                build: function () {
+                    // Вызываем родительский метод build.
+                    ZoomLayout.superclass.build.call(this);
+
+                    // Привязываем функции-обработчики к контексту и сохраняем ссылки
+                    // на них, чтобы потом отписаться от событий.
+                    this.zoomInCallback = ymaps.util.bind(this.zoomIn, this);
+                    this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
+
+                    // Начинаем слушать клики на кнопках макета.
+                    $('#zoom-in').bind('click', this.zoomInCallback);
+                    $('#zoom-out').bind('click', this.zoomOutCallback);
+                },
+
+                clear: function () {
+                    // Снимаем обработчики кликов.
+                    $('#zoom-in').unbind('click', this.zoomInCallback);
+                    $('#zoom-out').unbind('click', this.zoomOutCallback);
+
+                    // Вызываем родительский метод clear.
+                    ZoomLayout.superclass.clear.call(this);
+                },
+
+                zoomIn: function () {
+                    let map = this.getData().control.getMap();
+                    map.setZoom(map.getZoom() + 1, {checkZoomRange: true});
+                },
+
+                zoomOut: function () {
+                    let map = this.getData().control.getMap();
+                    map.setZoom(map.getZoom() - 1, {checkZoomRange: true});
+                }
+            }),
+            zoomControl = new ymaps.control.ZoomControl({options: {layout: ZoomLayout}});
 
         for (let i = 0; i < placemarks1.length; i++) {
             geoObjects1[i] = new ymaps.Placemark([placemarks1[i].longitude, placemarks1[i].latitude], {
                 hintContent: placemarks1[i].hintContent,
-                balloonContent: placemarks1[i].balloonContent
+                balloonContentHeader: placemarks1[i].balloonContent
+                //balloonContent: placemarks1[i].balloonContent
             },
             {
                 iconLayout: 'default#image',
@@ -210,6 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
 
+        myMap1.controls.add(zoomControl, {
+            position: {
+                right: 10,
+                top: 210
+            }
+        });
         myMap1.geoObjects.add(clusterer1);
         clusterer1.add(geoObjects1);
 
@@ -266,45 +321,15 @@ document.addEventListener('DOMContentLoaded', () => {
             myMap2.events.add('click', event => {
                let coords = event.get('coords');
                console.log(coords);
-               highlightResult(coords);
+               itemDeliveryList.forEach(item => {
+                  item.style.border = '2px solid #F7F7F7';
+               });
+
+                deliveryZones.each(obj => {
+                    console.log(obj);
+                    obj.options.set('fillOpacity', 0.2);
+                });
             });
-
-            // Проверим попадание метки геолокации в одну из зон доставки.
-            myMap2.controls.get('geolocationControl').events.add('locationchange', function (e) {
-                highlightResult(e.get('geoObjects').get(0));
-            });
-
-            function highlightResult(obj) {
-                // Сохраняем координаты переданного объекта.
-               //let coords = obj.geometry.getCoordinates(),
-                let coords = obj;
-                    // Находим полигон, в который входят переданные координаты.
-                    polygon = deliveryZones.searchContaining(coords).get(0);
-
-                if (polygon) {
-                    // Уменьшаем прозрачность всех полигонов, кроме того, в который входят переданные координаты.
-                    deliveryZones.setOptions('fillOpacity', 0.4);
-                    polygon.options.set('fillOpacity', 0.8);
-                    // Перемещаем метку с подписью в переданные координаты и перекрашиваем её в цвет полигона.
-                } else {
-                    // Если переданные координаты не попадают в полигон, то задаём стандартную прозрачность полигонов.
-                    deliveryZones.setOptions('fillOpacity', 0.4);
-                }
-
-                function setData(obj){
-                    var address = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
-                    if (address.trim() === '') {
-                        address = obj.getAddressLine();
-                    }
-                    var price = polygon.properties.get('description');
-                    price = price.match(/<strong>(.+)<\/strong>/)[1];
-                    deliveryPoint.properties.set({
-                        iconCaption: address,
-                        balloonContent: address,
-                        balloonContentHeader: price
-                    });
-                }
-            }
         }
 
 

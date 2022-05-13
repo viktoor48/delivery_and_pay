@@ -384,3 +384,36 @@ html {
     line-height: 120%;
     color: #1B1B20;
 }
+
+/*zoomControl*/
+
+.zoom-control {
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 40px;
+}
+
+.zoom-control__row {
+    display: flex;
+    flex-direction: column;
+}
+
+.zoom-control__plus {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.zoom-control__minus {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*zoomControl*/
