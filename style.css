@@ -417,3 +417,267 @@ html {
 }
 
 /*zoomControl*/
+
+/*footer*/
+
+.footer {
+    background: #F7F7F7;
+    padding: 60px 0;
+}
+
+.footer__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__column-menu {
+    margin-left: 30px;
+}
+
+.footer__menu {
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+    margin-bottom: 30px;
+}
+
+.footer__menu li {
+    display: inline-flex;
+    margin-right: 40px;
+}
+
+.copyright {
+    font-size: 16px;
+    line-height: 110%;
+    color: #73737B;
+}
+
+.footer__column-social {
+    margin-right: 30px;
+}
+
+.footer__social-title {
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+    margin-bottom: 20px;
+}
+
+.footer__social-img {
+
+}
+
+.footer__link-img {
+    margin-right: 30px;
+}
+
+.footer__link-img:last-child {
+    margin-right: 0;
+}
+
+/*footer*/
+
+/*header*/
+
+.header {
+    padding: 20px 18px;
+}
+
+.header__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__column {
+    display: inline-flex;
+}
+
+.header__logo {
+    margin-right: 30px;
+}
+
+.header__location {
+    font-size: 16px;
+    line-height: 110%;
+    color: #73737B;
+    margin-right: 41px;
+}
+
+.header__location::before {
+    content: url("image/location.svg");
+    position: relative;
+    top: 3px;
+    margin-right: 2px;
+}
+
+.header__number {
+    font-size: 16px;
+    line-height: 110%;
+    color: #1B1B20;
+    margin-right: 20px;
+}
+
+.header__number::before {
+    content: url("image/arrow drop-down.svg");
+    position: relative;
+    top: 2px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.header__menu {
+    font-size: 16px;
+    line-height: 110%;
+    color: #73737B;
+}
+
+.header__menu li {
+    display: inline-flex;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.header__menu li:last-child {
+    margin-right: 0;
+}
+
+/*header*/
+
+/*subheader*/
+
+.subheader {
+    padding: 20px;
+    background: #F7F7F7;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.subheader__row {
+    display: flex;
+    align-items: center;
+}
+
+.subheader__catalog {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 110%;
+    color: #FFFFFF;
+    background: #303184;
+    border-radius: 10px;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.subheader__catalog::before {
+    content: url("image/burger.svg");
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+}
+
+.subheader__search-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 2px solid #009DE0;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.subheader__search-wrapper::after {
+    content: url("image/search.svg");
+    margin: 14px 20px 14px 20px;
+}
+
+.subheader__drop-down {
+    font-size: 16px;
+    line-height: 110%;
+    color: #73737B;
+    padding: 11px 12px;
+    background: #F7F7F7;
+    border-radius: 6px;
+    margin: 6px 18px 6px 6px;
+    display: flex;
+    align-items: center;
+}
+
+.subheader__drop-down::before {
+    content: url("image/arrow drop-down.svg");
+    margin: 0 9px 0 0;
+}
+
+.subheader__search-input {
+    width: 100%;
+    color: #73737B;
+    font-size: 16px;
+    line-height: 110%;
+}
+
+.subheader__frame {
+    padding: 14px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.subheader__frame:last-child {
+    margin-right: 0;
+}
+
+.subheader__frame-price {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 110%;
+    color: #1B1B20;
+    white-space: nowrap;
+    margin-left: 6px;
+}
+
+.subheader__frame-count {
+    position: absolute;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 110%;
+    text-align: center;
+    color: #FFFFFF;
+    background: #009DE0;
+    border-radius: 100px;
+    padding: 4px 7px;
+    right: -8px;
+    top: -8px;
+}
+
+/*subheader*/
+
+.breadcrumb {
+    font-size: 14px;
+    line-height: 110%;
+    margin-bottom: 10px;
+}
+
+.breadcrumb li {
+    display: inline-flex;
+    color: #303184;
+}
+
+.breadcrumb a {
+    color: #303184;
+}
+
+.breadcrumb li:last-child {
+    color: #73737B;
+}
+
+.breadcrumb li + li:before {
+    content: "/";
+    margin: 0 10px;
+}
