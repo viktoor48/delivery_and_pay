@@ -7,6 +7,7 @@
     <title>Contacts</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=be01bb72-15a3-4c22-bdcd-121016d2c0d9"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -102,6 +103,7 @@
                                     <div class="requisites__name">
                                         Юридический адрес
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         142103, Московская область, г. Подольск, ул. Железнодорожная, д. 2, пом. 1
                                     </div>
@@ -110,6 +112,7 @@
                                     <div class="requisites__name">
                                         Почтовый адрес
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         42103, Московская область, г. Подольск, ул. Железнодорожная, д. 2, пом. 1.
                                     </div>
@@ -118,6 +121,7 @@
                                     <div class="requisites__name">
                                         ОГРН
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         5087746387163
                                     </div>
@@ -126,6 +130,7 @@
                                     <div class="requisites__name">
                                         ИНН
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         7730592360
                                     </div>
@@ -134,6 +139,7 @@
                                     <div class="requisites__name">
                                         КПП
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         503601001
                                     </div>
@@ -142,6 +148,7 @@
                                     <div class="requisites__name">
                                         ОКПО
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         88484448
                                     </div>
@@ -150,6 +157,7 @@
                                     <div class="requisites__name">
                                         ОКТМО
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         46760000
                                     </div>
@@ -158,6 +166,7 @@
                                     <div class="requisites__name">
                                         ОКВЭД
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         22.29.2 (доп. 46.90, 22.29, 25.99, 32.99, 46.69, 47.9, 77.39.2)
                                     </div>
@@ -166,6 +175,7 @@
                                     <div class="requisites__name">
                                         р/с
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         407 028 101 120 105 613 89
                                     </div>
@@ -174,6 +184,7 @@
                                     <div class="requisites__name">
                                         к/с
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         301 018 104 452 500 003 60
                                     </div>
@@ -182,6 +193,7 @@
                                     <div class="requisites__name">
                                         Банк
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         Филиал «Корпоративный» ПАО «Совкомбанк»
                                     </div>
@@ -190,6 +202,7 @@
                                     <div class="requisites__name">
                                         БИК
                                     </div>
+                                    <div class="requisites__middle-block"></div>
                                     <div class="requisites__value">
                                         044525360
                                     </div>
@@ -205,7 +218,7 @@
                                 Офис в Москве
                             </div>
                             <div class="location__map">
-
+                                <div id="map1" class="min-map"></div>
                             </div>
                             <div class="location__address">
                                 <div class="location__title">
@@ -239,7 +252,7 @@
                                 Офис в Подольске
                             </div>
                             <div class="location__map">
-
+                                <div id="map2" class="min-map"></div>
                             </div>
                             <div class="location__address">
                                 <div class="location__title">
@@ -273,7 +286,7 @@
                                 Офис в Краснодаре
                             </div>
                             <div class="location__map">
-
+                                <div id="map3" class="min-map"></div>
                             </div>
                             <div class="location__address">
                                 <div class="location__title">
@@ -307,7 +320,7 @@
                                 Офис в Новосибирске
                             </div>
                             <div class="location__map">
-
+                                <div id="map4" class="min-map"></div>
                             </div>
                             <div class="location__address">
                                 <div class="location__title">
@@ -381,5 +394,6 @@
             </div>
         </div>
     </div>
+    <script src="locationMap.js"></script>
 </body>
 </html>

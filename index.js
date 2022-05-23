@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         inputAddress.value = '';
     });
 
-
     //map
     new Promise(resolve => ymaps.ready(resolve))
         .then(() => init())
@@ -64,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude: 52.61131029077353,
             longitude: 39.57432284026451,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
         '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
         '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
         '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude:52.606212324288975,
             longitude:39.501963076721196,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
                 '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
                 '                                            <div class="aside-item__subtitle">Московская область, г. Подольск, ул. Железнодорожная, 2а</div>\n' +
                 '                                            <div class="aside-item__number">+7 (495) 232 23 11 доб. 263.</div>\n' +
@@ -86,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude:52.60544997,
             longitude:39.60712977,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
                 '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
                 '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
                 '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude:52.64591314381722,
             longitude:39.67304999166509,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
                 '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
                 '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
                 '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
@@ -108,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude:52.58400473365307,
             longitude:39.625892117693645,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
                 '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
                 '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
                 '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             latitude:52.63732935337195,
             longitude:39.51065336311334,
             hintContent: 'Хинт',
-            balloonContent: '<div class="aside-item">\n' +
+            balloonContent: '<div id="tab1" class="aside-item">\n' +
                 '                                            <div class="aside-item__title">ПВЗ «Деловые Линии»</div>\n' +
                 '                                            <div class="aside-item__subtitle">Москва, ул. Касаткина, 11с2, пункт выдачи транспортной компании DPD.</div>\n' +
                 '                                            <div class="aside-item__number">8 (800) 250 44 34</div>\n' +
@@ -268,6 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
         myMap1.geoObjects.add(clusterer1);
         clusterer1.add(geoObjects1);
 
+        let asideItem = document.querySelectorAll('.aside-item');
+
+        for (let asideElement of asideItem) {
+            asideElement.addEventListener('click', (event) => {
+                let currentItem = event.currentTarget;
+                for (let asideItemElement of asideItem) {
+                    asideItemElement.style.border = '2px solid #F7F7F7';
+                }
+                currentItem.style.border = '2px solid #009DE0';
+            });
+        }
+
         //map2
         let myMap2 = new ymaps.Map('map2', {
            center: center,
@@ -384,4 +395,15 @@ document.addEventListener('DOMContentLoaded', () => {
             parent.innerHTML += placemarks[i].balloonContent;
         }
     }
+
+    const itemTab1 = document.querySelectorAll('#tab1');
+
+    for (let i = 0; i < itemTab1.length; i++) {
+        if (placemarks1[i]) {
+            let coords = [placemarks1[i].latitude, placemarks1[i].longitude];
+            itemTab1[i].setAttribute('data-coords', coords);
+            console.log(itemTab1[i].getAttribute('data-coords'));
+        }
+    }
+    console.log(itemTab1);
 });

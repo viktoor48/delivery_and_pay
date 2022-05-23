@@ -15,6 +15,7 @@ html {
 .container {
     max-width: 1252px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .main-wrapper {
@@ -175,6 +176,7 @@ html {
     border-radius: 10px;
     margin-bottom: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .aside-item:last-child {
@@ -241,7 +243,9 @@ html {
     height: 100%;
 }
 
-.map > ymaps {
+.min-map {
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -741,7 +745,7 @@ html {
 
 .requisites__company-row {
     display: flex;
-    justify-content: space-between;
+    align-items: baseline;
 }
 
 .requisites__company-row + .requisites__company-row {
@@ -753,18 +757,17 @@ html {
     line-height: 110%;
     color: #73737B;
     white-space: nowrap;
-    flex: 0 1 40%;
+    margin-right: 10px;
 }
 
-.requisites__name::after {
-    content: "";
-    width: 100%;
-    border: 1px dashed #E3E2E2;
-    display: inline-flex;
-    position: relative;
+.requisites__middle-block {
+    flex: 1 1 auto;
+    min-width: 150px;
+    border-bottom: 1px dashed #E3E2E2;
 }
 
 .requisites__value {
+    margin-left: 10px;
     font-size: 16px;
     line-height: 110%;
     color: #1B1B20;
@@ -781,9 +784,9 @@ html {
 
 .location__row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     column-gap: 15px;
     row-gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
 }
 
 .location__item {
@@ -797,7 +800,6 @@ html {
 .location__map {
     width: 100%;
     height: 220px;
-    background-color: #3a3a3a;
 }
 
 .location__address {
