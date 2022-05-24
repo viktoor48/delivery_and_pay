@@ -267,7 +267,24 @@ document.addEventListener('DOMContentLoaded', () => {
         myMap1.geoObjects.add(clusterer1);
         clusterer1.add(geoObjects1);
 
-        let asideItem = document.querySelectorAll('.aside-item');
+        myMap1.geoObjects.events.add('click', (e) => {
+            let target = e.get('target');
+            let coordsTarget = target.geometry.getCoordinates();
+            console.log(coordsTarget);
+
+            for (let asideItemElement of asideItem) {
+                let coords = (asideItemElement.getAttribute('data-coords')).split(',');
+                console.log(coords);
+                if (coords[0] == coordsTarget[0] && coords[1] == coordsTarget[1]) {
+                    asideItemElement.style.border = '2px solid #009DE0';
+                } else {
+                    asideItemElement.style.border = '2px solid #F7F7F7';
+                }
+            }
+        });
+
+
+        let asideItem = document.querySelectorAll('#tab1');
 
         for (let asideElement of asideItem) {
             asideElement.addEventListener('click', (event) => {
@@ -276,6 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     asideItemElement.style.border = '2px solid #F7F7F7';
                 }
                 currentItem.style.border = '2px solid #009DE0';
+                let coords = (currentItem.getAttribute('data-coords')).split(',');
+                myMap1.setCenter([coords[0],coords[1]], 14, {
+                    checkZoomRange: false
+                });
             });
         }
 
@@ -311,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     let currentZone = event._cache.target;
                     let currentColor = currentZone.options._options.fillColor;
                     deliveryZones.each(obj => {
-                        console.log(obj);
                         if (currentZone.myid === obj.myid) {
                             obj.options.set('fillOpacity', 0.6);
                         } else {
@@ -337,7 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
                });
 
                 deliveryZones.each(obj => {
-                    console.log(obj);
                     obj.options.set('fillOpacity', 0.2);
                 });
             });
@@ -355,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         data.then(data => {
-            console.log(data);
             onZonesLoad(data);
         });
 
@@ -400,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < itemTab1.length; i++) {
         if (placemarks1[i]) {
-            let coords = [placemarks1[i].latitude, placemarks1[i].longitude];
+            let coords = [placemarks1[i].longitude, placemarks1[i].latitude];
             itemTab1[i].setAttribute('data-coords', coords);
             console.log(itemTab1[i].getAttribute('data-coords'));
         }
